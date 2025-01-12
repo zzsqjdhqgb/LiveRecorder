@@ -2,9 +2,6 @@ import subprocess
 import threading
 import time
 import os
-import sys
-import signal
-import psutil
 
 from config import VLC_PATH, OUTPUT_PATH
 from task import TASKS
@@ -20,6 +17,7 @@ def PrintLog(*args, **kwargs) -> None:
 
 Stop_Flag = False
 flv_threads = []
+worker_threads = []
 
 
 def Transform(input: str, output: str) -> None:
@@ -72,7 +70,7 @@ def Worker(url: str, name: str) -> None:
     PrintLog(f"Worker {name} stopped")
 
 
-def init() -> None:
+def Start() -> None:
     # 创建输出目录
     if not os.path.exists(OUTPUT_PATH):
         os.makedirs(OUTPUT_PATH)
@@ -80,24 +78,30 @@ def init() -> None:
         # 创建任务目录
         if not os.path.exists(os.path.join(OUTPUT_PATH, task["name"])):
             os.makedirs(os.path.join(OUTPUT_PATH, task["name"]))
-        threading.Thread(target=Worker, args=(
-            task["url"], task["name"])).start()
+        thr = threading.Thread(target=Worker, args=(
+            task["url"], task["name"]))
+        thr.start()
+        worker_threads.append(thr)
 
 
 def Stop() -> None:
     global Stop_Flag
     PrintLog('Stopping flvs...')
-    Stop_Flag=True
-    kill_lst=flv_threads[:]
+    Stop_Flag = True
+    kill_lst = flv_threads[:]
     for thr in kill_lst:
         thr.kill()
     for thr in kill_lst:
         thr.wait()
     PrintLog('All flv processes Stopped.')
+    for thr in worker_threads:
+        thr.join()
+    PrintLog('All worker threads Stopped.')
+    PrintLog('exiting...')
 
 
 if __name__ == "__main__":
-    init()
+    Start()
     try:
         while True:
             time.sleep(1)
