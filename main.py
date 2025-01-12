@@ -16,7 +16,7 @@ def PrintLog(*args, **kwargs) -> None:
 
 
 Stop_Flag = False
-flv_threads = []
+flv_proc = []
 worker_threads = []
 
 
@@ -55,11 +55,11 @@ def Worker(url: str, name: str) -> None:
             os.path.abspath(rec_out) + "}",
             "--play-and-exit"
         ])
-        flv_threads.append(thr)
+        flv_proc.append(thr)
 
         # 录制结束
         thr.wait()
-        flv_threads.remove(thr)
+        flv_proc.remove(thr)
         PrintLog(f"Recording {name} stopped")
         # 生成输出文件名
         rec_res = os.path.join(
@@ -88,7 +88,7 @@ def Stop() -> None:
     global Stop_Flag
     PrintLog('Stopping flvs...')
     Stop_Flag = True
-    kill_lst = flv_threads[:]
+    kill_lst = flv_proc[:]
     for thr in kill_lst:
         thr.kill()
     for thr in kill_lst:
