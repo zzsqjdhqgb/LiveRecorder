@@ -45,7 +45,7 @@ def Worker(url: str, name: str) -> None:
         # 生成录制文件名
         cur_time = time.strftime('%Y-%m-%d_%H-%M-%S')
         rec_out = os.path.join(OUTPUT_PATH, os.path.join(
-            name, f"/tmp_{cur_time}.mp4"))
+            name, f"tmp_{cur_time}.mp4"))
 
         # 开始录制
         PrintLog(f"Recording to {rec_out}")
@@ -66,7 +66,7 @@ def Worker(url: str, name: str) -> None:
         # 生成输出文件名
         rec_res = os.path.join(
             OUTPUT_PATH, os.path.join(
-                name, f"/{cur_time} - {time.strftime('%Y-%m-%d_%H-%M-%S')}.mp4"))
+                name, f"{cur_time} - {time.strftime('%Y-%m-%d_%H-%M-%S')}.mp4"))
         # 重新编码文件
         threading.Thread(target=Transform, args=(rec_out, rec_res)).start()
     PrintLog(f"Worker {name} stopped")
