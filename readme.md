@@ -9,5 +9,6 @@ Create a file named `task.py`. Then start `main.py`
 -   [x] Basic Functions
 -   [ ] TUI or WebUI
 -   [ ] Auto setup to run on startup
--   [ ] Auto remove damaged mp4 files if vlc timeout
+-   [x] Auto remove damaged mp4 files if vlc timeout
+    -   [ ] opencv will output error messages. consider disable this for better log
 -   [ ] Stop vlc without  breaking the mp4 file, using `--input-slave=file://`
