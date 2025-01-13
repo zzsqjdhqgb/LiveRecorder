@@ -10,3 +10,4 @@ Create a file named `task.py`. Then start `main.py`
 -   [ ] TUI or WebUI
 -   [ ] Auto setup to run on startup
 -   [ ] Auto remove damaged mp4 files if vlc timeout
+-   [ ] Stop vlc without  breaking the mp4 file, using `--input-slave=file://`
