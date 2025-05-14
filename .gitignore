@@ -1,9 +1,0 @@
-/task.py
-/__pycache__/*
-
-# The app's data
-/recordings/*
-/dumps/*
-
-# A local media server to test the app
-/simple_media_server/*
