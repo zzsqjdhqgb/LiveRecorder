@@ -1,0 +1,24 @@
+{
+  "name": "liverecorder",
+  "version": "0.0.1",
+  "main": "main.js",
+  "scripts": {
+    "run": "node main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zzsqjdhqgb/LiveRecorder.git"
+  },
+  "author": "zzsqjdhqgb",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/zzsqjdhqgb/LiveRecorder/issues"
+  },
+  "homepage": "https://github.com/zzsqjdhqgb/LiveRecorder#readme",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.9.0",
+    "fluent-ffmpeg": "^2.1.3"
+  }
+}
