@@ -7,3 +7,7 @@
 
 # A local media server to test the app
 /simple_media_server/*
+
+# Added by cargo
+
+/target
